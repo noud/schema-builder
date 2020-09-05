@@ -12,7 +12,7 @@ class MigrationCreator
     /**
      * @const array
      */
-    const COLUMN_WITH_LENGTH = ['char', 'decimal', 'double', 'float', 'string'];
+    const COLUMN_WITH_LENGTH = ['char', 'decimal', 'double', 'float', 'string', 'uuid'];
 
     /**
      * @const array
