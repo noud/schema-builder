@@ -1,4 +1,9 @@
 # Changelog v1.3.0
+ - Added UUID
+ - Added more color conform CSS 2.1
+ - Unique foreign keys migration file and class
+ 
+# Changelog v1.3.0
  - Added support for laravel/lumen 6.x/7.x/8.x
 
 # Changelog v1.2.0
