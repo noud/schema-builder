@@ -1,4 +1,4 @@
-# Changelog v1.3.0
+# Changelog v1.3.2
  - Export schema.json
  - Added UUID
  - Added more color conform CSS 2.1
