@@ -1,4 +1,5 @@
 # Changelog v1.3.0
+ - Export schema.json
  - Added UUID
  - Added more color conform CSS 2.1
  - Unique foreign keys migration file and class
