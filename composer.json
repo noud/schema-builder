@@ -22,6 +22,12 @@
             "email": "rifat662@gmail.com",
             "role": "Developer",
             "homepage": "https://github.com/Agontuk"
+        },
+        {
+            "name": "Noud de Brouwer",
+            "email": "noud4@home.nl",
+            "role": "Developer",
+            "homepage": "https://github.com/noud"
         }
     ],
     "require": {
