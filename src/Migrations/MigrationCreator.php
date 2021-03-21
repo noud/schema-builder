@@ -6,6 +6,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use League\Flysystem\Filesystem as Flysystem;
 use League\Flysystem\ZipArchive\ZipArchiveAdapter;
+use League\Flysystem\ZipArchive\ZipArchiveProvider;
 
 class MigrationCreator
 {
@@ -48,6 +49,9 @@ class MigrationCreator
     {
         $this->files = $files;
         $this->flysystem = new Flysystem(new ZipArchiveAdapter(storage_path('migrations.zip')));
+        // $this->flysystem = new Flysystem(new ZipArchiveProvider, new ZipArchiveAdapter(storage_path('migrations.zip')));
+        // $this->flysystem = new Flysystem(new ZipArchiveProvider(storage_path('migrations.zip')));
+        // $this->flysystem = new Flysystem(new ZipArchiveAdapter(new ZipArchiveProvider(storage_path('migrations.zip'))));
     }
 
     /**
@@ -130,6 +134,7 @@ class MigrationCreator
             // Write foreign key migration out to disk.
             $data = $this->buildForeignKeyData($foreignKeyData);
             $this->createForeignKeyMigration($data['up'], $data['down']);
+            // $this->createForeignKeyMigration($data['up'], $data['down'], $schema['database']['name']);
         }
 
         // Write the schema into a txt file.
@@ -196,13 +201,17 @@ class MigrationCreator
      *
      * @return string
      */
-    private function createForeignKeyMigration($upData, $downData)
+    private function createForeignKeyMigration($upData, $downData, $title = null)
     {
         // Update time interval each time so that migration
         // files are created with different timestamp.
         $this->setTimeInterval($this->getTimeInterval() + 60);
 
-        $path = $this->getDatePrefix() . '_create_foreign_keys_table.php';
+        $titlePart = '';
+        if ($title) {
+            $titlePart = '_for_' . $title;
+        }
+        $path = $this->getDatePrefix() . '_create_foreign_keys_table' . $titlePart . '.php';
 
         // First we will get the stub file for the migration, which serves as a type
         // of template for the migration. Once we have those we will populate the
